@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>我的导航</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div class="wrapper"  id='haha'>
+
+        </div>
+    </main>
+    <footer></footer>
+    <script>
+        var keys = {
+            0:['q','w','e','r','t','y','u','i','o','p'],
+            1:['a','s','d','f','g','h','j','k','l'],
+            2:['z','x','c','v','b','n','m'],
+            length:3
+        }
+        var hash = {
+            q:'https://quanmin.tv',
+            w:'https://weibo.com',
+            e: undefined,
+            r:'https://ruanyifeng.com',
+            t:'https://taobao.com',
+            y:'https://youtube.com',
+            u: undefined,
+            i:'https://iqiyi.com',
+            o:'https://oneplusbbs.com',
+            p:'https://pan.baidu.com',
+            a:'https://apple.com/cn',
+            s:'https://shuma.in',
+            d:'https://douyu.com',
+            f: undefined,
+            g:'https://google.com',
+            h:'https://huya.com',
+            j:'https://jd.com',
+            k: undefined,
+            l:'https://lagou.com',
+            z:'https://zimuzu.tv',
+            x:'https://xiedaimala.com',
+            c:'https://canton8.com/forum',
+            v:"https://v2ex.com",
+            b:"https://bilibili.com",
+            n:"https://nike.com",
+            m:"https://mail.qq.com",
+        }
+        //取出localStorage中的lll对应的hash
+        hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') ||'null')
+        if(hashInLocalStorage){
+            hash = hashInLocalStorage
+        }
+        index = 0
+        while(index<keys['length']){
+            div1 = document.createElement('div')
+            haha.appendChild(div1)
+            row = keys[index] //第一个数组 第二个数组 第三个数组
+            index2 = 0
+            while(index2 < row['length']){
+                keyboard = document.createElement('kbd')
+                div1.appendChild(keyboard)
+                keyboard.textContent = row[index2] // 0~9 0~8 0~6 
+                
+                buttonX = document.createElement('button')
+                buttonX.textContent = '编辑'
+                buttonX.id = row[index2]
+                buttonX.onclick = function(sadijfosiadn){
+                    key = sadijfosiadn.target.id  //sadijfosiadn.target用户点击的元素
+                    x = prompt('请输入一个网址：')
+                    hash[key] = x
+                    localStorage.setItem('zzz', JSON.stringify(hash))
+                }
+                keyboard.appendChild(buttonX)
+                
+                index2 = index2 + 1
+            }
+            
+            index = index+1
+        }
+
+        document.onkeypress=function(sadijfosiadn){
+            key = sadijfosiadn['key'] //获取用户按的键
+            website = hash[key] //key对应的网站
+            //location.href = website  //当前地址栏的地址，打开网站
+            window.open(website,'_blank')
+        }
+    </script>
+</body>
+</html>
